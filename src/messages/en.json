@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Aydexx — Full-Stack Developer",
+    "description": "Portfolio of Aydexx — a Computer Programming student building full-stack apps with Laravel, TypeScript, and AI/RAG. Currently looking for junior developer roles."
+  },
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "role": "Full-stack developer · student",
+    "subtitle": "A Computer Programming student building full-stack apps focused on Laravel, TypeScript, and AI/RAG. Looking for junior roles.",
+    "cta": {
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Student and full-stack developer",
+    "body": "I'm studying Computer Programming at İstanbul Arel University. I build full-stack projects with Laravel, React/TypeScript, Node.js, and Python/FastAPI. I'm especially interested in AI and RAG integrations, and I care about writing tests and keeping architecture clean and maintainable."
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "title": "Technologies I work with",
+    "categories": {
+      "languages": "Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database / ORM",
+      "realtime": "Real-time & AI",
+      "tools": "Tools"
+    }
+  },
+  "projects": {
+    "eyebrow": "Selected work",
+    "title": "Projects I've built",
+    "featured": "Featured",
+    "github": "GitHub",
+    "liveDemo": "Live Demo",
+    "comingSoon": "Live demo coming soon",
+    "items": {
+      "taskflow": {
+        "description": "A real-time Kanban app with live sync via Socket.IO, role-based access control, notifications, and analytics."
+      },
+      "larajob": {
+        "description": "A job board built with Laravel. Features semantic search, job-candidate match scoring, and AI-assisted capabilities."
+      },
+      "ragbot": {
+        "description": "A RAG system that answers questions over uploaded documents, with clickable source citations and conversation memory."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk",
+    "invite": "Reach out to work together or just ask a question.",
+    "methods": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "stack": "Built with Next.js & Tailwind CSS."
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "lang": {
+    "toggle": "Switch language"
+  }
+}

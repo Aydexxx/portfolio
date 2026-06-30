@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Aydexx — Full-Stack Geliştirici",
+    "description": "Aydexx'in portfolyosu — Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı öğrencisi. Junior pozisyonlar arıyor."
+  },
+  "nav": {
+    "work": "Projeler",
+    "about": "Hakkımda",
+    "contact": "İletişim",
+    "menu": "Menü",
+    "close": "Kapat"
+  },
+  "hero": {
+    "greeting": "Merhaba, ben",
+    "role": "Full-stack geliştirici · öğrenci",
+    "subtitle": "Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı öğrencisiyim. Junior pozisyonlar arıyorum.",
+    "cta": {
+      "projects": "Projeler",
+      "contact": "İletişim"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "E-posta"
+    }
+  },
+  "about": {
+    "eyebrow": "Hakkımda",
+    "title": "Öğrenci ve full-stack geliştirici",
+    "body": "İstanbul Arel Üniversitesi'nde Bilgisayar Programcılığı okuyorum. Laravel, React/TypeScript, Node.js ve Python/FastAPI ile full-stack projeler geliştiriyorum. Özellikle yapay zekâ ve RAG entegrasyonlarıyla ilgileniyorum. Test yazımına ve temiz, sürdürülebilir mimariye önem veriyorum."
+  },
+  "skills": {
+    "eyebrow": "Yetenekler",
+    "title": "Kullandığım teknolojiler",
+    "categories": {
+      "languages": "Diller",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Veritabanı / ORM",
+      "realtime": "Gerçek Zamanlı & AI",
+      "tools": "Araçlar"
+    }
+  },
+  "projects": {
+    "eyebrow": "Seçili çalışmalar",
+    "title": "Geliştirdiğim projeler",
+    "featured": "Öne çıkan",
+    "github": "GitHub",
+    "liveDemo": "Canlı Demo",
+    "comingSoon": "Canlı demo yakında",
+    "items": {
+      "taskflow": {
+        "description": "Gerçek zamanlı Kanban uygulaması. Socket.IO ile canlı senkronizasyon, rol tabanlı yetkilendirme, bildirimler ve analytics."
+      },
+      "larajob": {
+        "description": "Laravel ile geliştirilmiş iş ilan platformu. Semantik arama, ilan-aday eşleşme skoru ve AI destekli özellikler içerir."
+      },
+      "ragbot": {
+        "description": "Yüklenen dökümanlar üzerinden soru-cevap yapan RAG sistemi. Tıklanabilir kaynak alıntıları ve konuşma hafızası ile."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "İletişim",
+    "title": "Hadi konuşalım",
+    "invite": "Birlikte çalışmak ya da bir soru sormak için bana ulaşabilirsiniz.",
+    "methods": {
+      "email": "E-posta",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "stack": "Next.js & Tailwind CSS ile geliştirildi."
+  },
+  "theme": {
+    "toggle": "Temayı değiştir"
+  },
+  "lang": {
+    "toggle": "Dili değiştir"
+  }
+}

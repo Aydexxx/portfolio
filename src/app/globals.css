@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (default is dark — see <html> in layout). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ----------------------------------------------------------------------------
+   Design tokens — "Iris" system
+   Light values live on :root, dark overrides on .dark. Dark is the default.
+---------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces & text — light */
+  --background: #fbfbfd;
+  --surface: #ffffff;
+  --surface-2: #f3f3f7;
+  --border: rgba(8, 8, 12, 0.08);
+  --border-strong: rgba(8, 8, 12, 0.14);
+  --foreground: #14141a;
+  --muted: #56565f;
+
+  /* Accent — Iris */
+  --accent: #5b59e0;
+  --accent-bright: #4a48d0;
+  --accent-contrast: #ffffff;
+  --glow: rgba(91, 89, 224, 0.22);
+
+  /* Solid fills (CTA buttons) need a darker shade than --accent to keep
+     white text at the 4.5:1 contrast minimum — --accent itself is tuned
+     light enough to stay legible as text/glow on dark backgrounds, which
+     undershoots that ratio when used as a filled background instead. Same
+     value in both themes, so primary buttons don't shift hue with theme. */
+  --accent-solid: #5b59e0;
+  --accent-solid-hover: #4a48d0;
+
+  color-scheme: light;
 }
 
+.dark {
+  --background: #08080a;
+  --surface: #0e0e12;
+  --surface-2: #15151b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --foreground: #f4f4f6;
+  --muted: #8a8a95;
+
+  --accent: #6e6cf7;
+  --accent-bright: #8b89ff;
+  --accent-contrast: #ffffff;
+  --glow: rgba(110, 108, 247, 0.28);
+
+  color-scheme: dark;
+}
+
+/* ----------------------------------------------------------------------------
+   Tailwind theme mapping — exposes tokens as utilities
+   (bg-background, text-foreground, text-muted, border-border, text-accent, …)
+---------------------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Subtle, consistent radius scale */
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ----------------------------------------------------------------------------
+   Base
+---------------------------------------------------------------------------- */
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+}
+
+/* Smooth scroll only when motion is welcome */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Color transition when toggling theme — but never for motion-sensitive folks */
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  .theme-transition,
+  .theme-transition * {
+    transition: background-color 0.4s ease, border-color 0.4s ease,
+      color 0.3s ease;
+  }
+}
+
+/* Accessible, visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+::selection {
+  background: var(--glow);
+  color: var(--foreground);
+}
+
+/* ----------------------------------------------------------------------------
+   Signature atmosphere — aurora + film grain
+---------------------------------------------------------------------------- */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.aurora--a {
+  top: -18%;
+  left: 8%;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle at center, var(--glow) 0%, transparent 68%);
+  animation: drift-a 32s ease-in-out infinite alternate;
+}
+
+.aurora--b {
+  bottom: -22%;
+  right: 4%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(
+    circle at center,
+    rgba(139, 137, 255, 0.18) 0%,
+    transparent 70%
+  );
+  animation: drift-b 38s ease-in-out infinite alternate;
+}
+
+.dark .aurora--a {
+  opacity: 0.7;
+}
+
+/* Faint film grain for cinematic depth */
+.grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .grain {
+  opacity: 0.06;
+}
+
+@keyframes drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(8vw, 6vh, 0) scale(1.18);
+  }
+}
+@keyframes drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-7vw, -5vh, 0) scale(0.9);
+  }
+}
+
+/* Freeze the atmosphere for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .aurora {
+    animation: none !important;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Small reusable primitives
+---------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
