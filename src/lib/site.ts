@@ -3,4 +3,4 @@
 // constant, so swapping in the production domain later is a single-line change.
 export const SITE_URL = "https://aydexx.dev";
 
-export const SITE_NAME = "Aydexx";
+export const SITE_NAME = "Bünyamin Aydeniz";

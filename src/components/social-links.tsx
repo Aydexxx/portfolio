@@ -18,7 +18,7 @@ const SOCIALS: Social[] = [
   },
   {
     labelKey: "hero.social.linkedin",
-    href: "https://www.linkedin.com/in/bünyamin-aydeniz-0a1182377",
+    href: "https://www.linkedin.com/in/b%C3%BCnyamin-aydeniz-0a1182377/",
     external: true,
     icon: LinkedInIcon,
   },

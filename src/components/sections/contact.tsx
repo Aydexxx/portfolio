@@ -28,8 +28,8 @@ const METHODS: ContactMethod[] = [
   },
   {
     labelKey: "contact.methods.linkedin",
-    value: "linkedin.com/in/bünyamin-aydeniz-0a1182377",
-    href: "https://www.linkedin.com/in/bünyamin-aydeniz-0a1182377",
+    value: "linkedin.com/in/bünyamin-aydeniz",
+    href: "https://www.linkedin.com/in/b%C3%BCnyamin-aydeniz-0a1182377/",
     external: true,
     icon: LinkedInIcon,
   },

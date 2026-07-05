@@ -61,7 +61,7 @@ export function SiteNav() {
         >
           <span className="inline-block size-2 rounded-full bg-accent shadow-[0_0_12px_var(--glow)]" />
           <span>
-            Ayde<span className="text-accent">xx</span>
+            Bünyamin <span className="text-accent">Aydeniz</span>
           </span>
         </a>
 

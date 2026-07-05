@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Aydexx — Full-Stack Geliştirici",
-    "description": "Aydexx'in portfolyosu — Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı öğrencisi. Junior pozisyonlar arıyor."
+    "title": "Bünyamin Aydeniz — Full-Stack Geliştirici",
+    "description": "Bünyamin Aydeniz'in portfolyosu — Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı mezunu. Junior pozisyonlar arıyor."
   },
   "nav": {
     "work": "Projeler",
@@ -12,8 +12,8 @@
   },
   "hero": {
     "greeting": "Merhaba, ben",
-    "role": "Full-stack geliştirici · öğrenci",
-    "subtitle": "Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı öğrencisiyim. Junior pozisyonlar arıyorum.",
+    "role": "Full-stack geliştirici · Bilgisayar Programcısı",
+    "subtitle": "Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı mezunuyum. Junior pozisyonlar arıyorum.",
     "cta": {
       "projects": "Projeler",
       "contact": "İletişim"
@@ -26,8 +26,8 @@
   },
   "about": {
     "eyebrow": "Hakkımda",
-    "title": "Öğrenci ve full-stack geliştirici",
-    "body": "İstanbul Arel Üniversitesi'nde Bilgisayar Programcılığı okuyorum. Laravel, React/TypeScript, Node.js ve Python/FastAPI ile full-stack projeler geliştiriyorum. Özellikle yapay zekâ ve RAG entegrasyonlarıyla ilgileniyorum. Test yazımına ve temiz, sürdürülebilir mimariye önem veriyorum."
+    "title": "Full-stack geliştirici",
+    "body": "İstanbul Arel Üniversitesi Bilgisayar Programcılığı mezunuyum. Laravel, React/TypeScript, Node.js ve Python/FastAPI ile full-stack projeler geliştiriyorum. Özellikle yapay zekâ ve RAG entegrasyonlarıyla ilgileniyorum. Test yazımına ve temiz, sürdürülebilir mimariye önem veriyorum."
   },
   "skills": {
     "eyebrow": "Yetenekler",
@@ -49,6 +49,9 @@
     "liveDemo": "Canlı Demo",
     "comingSoon": "Canlı demo yakında",
     "items": {
+      "fluxion": {
+        "description": "AI ajan node'ları olan workflow otomasyon platformu (mini n8n/Zapier). Görsel editör, DAG motoru, kuyruk/worker mimarisi, gerçek zamanlı işbirliği ve çok kullanıcılı RBAC."
+      },
       "taskflow": {
         "description": "Gerçek zamanlı Kanban uygulaması. Socket.IO ile canlı senkronizasyon, rol tabanlı yetkilendirme, bildirimler ve analytics."
       },

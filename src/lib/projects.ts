@@ -30,9 +30,31 @@ export type Project = {
   gradient: string;
 };
 
-// TaskFlow leads — it's the strongest project, so it's featured first and
+// Fluxion leads — it's the flagship project, so it's featured first and
 // rendered with extra weight in the grid.
 export const PROJECTS: Project[] = [
+  {
+    id: "fluxion",
+    name: "Fluxion",
+    descriptionKey: "projects.items.fluxion.description",
+    stack: [
+      "Node.js",
+      "TypeScript",
+      "React",
+      "React Flow",
+      "PostgreSQL",
+      "Redis",
+      "BullMQ",
+      "Socket.IO",
+      "Prisma",
+      "Docker",
+    ],
+    github: "https://github.com/Aydexxx/fluxion",
+    liveUrl: "https://web-production-2d7a3.up.railway.app",
+    image: "/projects/fluxion.png",
+    featured: true,
+    gradient: "linear-gradient(135deg, #6ee7c8 0%, #2f7fd6 48%, #18244f 100%)",
+  },
   {
     id: "taskflow",
     name: "TaskFlow",
@@ -40,7 +62,6 @@ export const PROJECTS: Project[] = [
     stack: ["React", "TypeScript", "Node.js", "Express", "Prisma", "Socket.IO"],
     github: "https://github.com/Aydexxx/taskflow",
     image: "/projects/taskflow.png",
-    featured: true,
     gradient: "linear-gradient(135deg, #8b89ff 0%, #5b59e0 42%, #211f52 100%)",
   },
   {

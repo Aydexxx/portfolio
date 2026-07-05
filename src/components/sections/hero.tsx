@@ -14,7 +14,7 @@ export function Hero() {
         <FadeIn>
           <h1 className="font-display text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[1.02] tracking-tight text-foreground">
             {t("hero.greeting")}{" "}
-            <span className="text-accent">Aydexx</span>
+            <span className="text-accent">Bünyamin Aydeniz</span>
           </h1>
         </FadeIn>
 
