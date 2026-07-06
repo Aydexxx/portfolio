@@ -1,59 +1,47 @@
 @import "tailwindcss";
 
-/* Class-based dark mode (default is dark — see <html> in layout). */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* ----------------------------------------------------------------------------
-   Design tokens — "Iris" system
-   Light values live on :root, dark overrides on .dark. Dark is the default.
+   Design tokens — "Bright gallery of live products" (Revision 1)
+   Light-first, single theme. Warm gallery paper with a confident cobalt accent;
+   the signature device is cobalt print registration / crop marks (see
+   components/projects/crop-marks.tsx).
+
+   Two layers:
+     · Raw palette   — --paper, --ink, --cobalt … (the concept)
+     · Semantic map  — --background, --foreground, --accent … (what components
+                       consume, kept stable so the app themes from one place)
 ---------------------------------------------------------------------------- */
 :root {
-  /* Surfaces & text — light */
-  --background: #fbfbfd;
-  --surface: #ffffff;
-  --surface-2: #f3f3f7;
-  --border: rgba(8, 8, 12, 0.08);
-  --border-strong: rgba(8, 8, 12, 0.14);
-  --foreground: #14141a;
-  --muted: #56565f;
+  /* Raw palette */
+  --paper: #f5f3ee; /* warm off-white base — gallery paper */
+  --paper-2: #ffffff; /* cards, video frame */
+  --ink: #14161b; /* near-black primary text */
+  --muted: #6b6f79; /* secondary text, captions */
+  --line: #e4e0d6; /* hairlines, borders */
+  --cobalt: #1f3be0; /* primary accent: links, CTA, crop marks, live signal */
+  --live: #12a150; /* the live dot only */
 
-  /* Accent — Iris */
-  --accent: #5b59e0;
-  --accent-bright: #4a48d0;
+  /* Semantic map */
+  --background: var(--paper);
+  --surface: var(--paper-2);
+  --surface-2: #efebe2; /* slightly deeper paper */
+  --border: var(--line);
+  --border-strong: #d6d1c4;
+  --foreground: var(--ink);
+
+  --accent: var(--cobalt);
+  --accent-bright: #1730b8; /* darker cobalt — hover */
   --accent-contrast: #ffffff;
-  --glow: rgba(91, 89, 224, 0.22);
-
-  /* Solid fills (CTA buttons) need a darker shade than --accent to keep
-     white text at the 4.5:1 contrast minimum — --accent itself is tuned
-     light enough to stay legible as text/glow on dark backgrounds, which
-     undershoots that ratio when used as a filled background instead. Same
-     value in both themes, so primary buttons don't shift hue with theme. */
-  --accent-solid: #5b59e0;
-  --accent-solid-hover: #4a48d0;
+  --accent-solid: var(--cobalt);
+  --accent-solid-hover: #1730b8;
+  --glow: rgba(31, 59, 224, 0.16);
 
   color-scheme: light;
 }
 
-.dark {
-  --background: #08080a;
-  --surface: #0e0e12;
-  --surface-2: #15151b;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --foreground: #f4f4f6;
-  --muted: #8a8a95;
-
-  --accent: #6e6cf7;
-  --accent-bright: #8b89ff;
-  --accent-contrast: #ffffff;
-  --glow: rgba(110, 108, 247, 0.28);
-
-  color-scheme: dark;
-}
-
 /* ----------------------------------------------------------------------------
    Tailwind theme mapping — exposes tokens as utilities
-   (bg-background, text-foreground, text-muted, border-border, text-accent, …)
+   (bg-background, text-foreground, border-border, text-accent, border-cobalt …)
 ---------------------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
@@ -69,11 +57,19 @@
   --color-accent-solid: var(--accent-solid);
   --color-accent-solid-hover: var(--accent-solid-hover);
 
+  /* Raw palette exposed for the gallery HUD + crop marks */
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-cobalt: var(--cobalt);
+  --color-live: var(--live);
+
+  /* Type roles: filmic serif display · quiet sans body · mono instrument readout */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, "Times New Roman",
+    serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Subtle, consistent radius scale */
   --radius-lg: 12px;
   --radius-xl: 16px;
 }
@@ -104,29 +100,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Color transition when toggling theme — but never for motion-sensitive folks */
-@media (prefers-reduced-motion: no-preference) {
-  body,
-  .theme-transition,
-  .theme-transition * {
-    transition: background-color 0.4s ease, border-color 0.4s ease,
-      color 0.3s ease;
-  }
-}
-
 /* Accessible, visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--accent-bright);
+  outline: 2px solid var(--cobalt);
   outline-offset: 2px;
   border-radius: 4px;
 }
 ::selection {
-  background: var(--glow);
+  background: color-mix(in srgb, var(--cobalt) 18%, transparent);
   color: var(--foreground);
 }
 
 /* ----------------------------------------------------------------------------
-   Signature atmosphere — aurora + film grain
+   Atmosphere — a very faint paper grain (see components/atmosphere.tsx)
+   Kept subtle: texture on the paper, never decoration. pointer-events:none.
 ---------------------------------------------------------------------------- */
 .atmosphere {
   position: fixed;
@@ -136,83 +123,60 @@ body {
   pointer-events: none;
 }
 
-.aurora {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.55;
-  will-change: transform;
-}
-
-.aurora--a {
-  top: -18%;
-  left: 8%;
-  width: 46vw;
-  height: 46vw;
-  background: radial-gradient(circle at center, var(--glow) 0%, transparent 68%);
-  animation: drift-a 32s ease-in-out infinite alternate;
-}
-
-.aurora--b {
-  bottom: -22%;
-  right: 4%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(
-    circle at center,
-    rgba(139, 137, 255, 0.18) 0%,
-    transparent 70%
-  );
-  animation: drift-b 38s ease-in-out infinite alternate;
-}
-
-.dark .aurora--a {
-  opacity: 0.7;
-}
-
-/* Faint film grain for cinematic depth */
-.grain {
+.paper-grain {
   position: absolute;
   inset: -50%;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.dark .grain {
-  opacity: 0.06;
-}
-
-@keyframes drift-a {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(8vw, 6vh, 0) scale(1.18);
-  }
-}
-@keyframes drift-b {
-  from {
-    transform: translate3d(0, 0, 0) scale(1.05);
-  }
-  to {
-    transform: translate3d(-7vw, -5vh, 0) scale(0.9);
-  }
-}
-
-/* Freeze the atmosphere for reduced-motion users */
-@media (prefers-reduced-motion: reduce) {
-  .aurora {
-    animation: none !important;
-  }
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ----------------------------------------------------------------------------
-   Small reusable primitives
+   Gallery primitives
 ---------------------------------------------------------------------------- */
+/* Mono instrument-panel eyebrow / readout label */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+/* The "● CANLI" status dot — pulsing live green */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--live);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 16%, transparent);
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--live);
+  animation: live-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes live-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Freeze pulse for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .live-dot::after {
+    animation: none;
+  }
 }

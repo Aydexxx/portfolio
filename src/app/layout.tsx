@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-import { themeNoFlashScript } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
 import { Atmosphere } from "@/components/atmosphere";
 import { SiteNav } from "@/components/nav/site-nav";
@@ -23,10 +22,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Instrument Serif is a non-variable display face — it ships a single weight,
+// so `weight` is required. It's the filmic title-card voice of the site.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const META = { en, tr } satisfies Record<Locale, { meta: { title: string; description: string } }>;
@@ -85,10 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#08080a" },
-    { media: "(prefers-color-scheme: light)", color: "#fbfbfd" },
-  ],
+  themeColor: "#f5f3ee",
 };
 
 export default async function RootLayout({
@@ -104,13 +103,8 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <head>
-        {/* Apply stored theme before paint to avoid a flash of the wrong theme. */}
-        <script dangerouslySetInnerHTML={{ __html: themeNoFlashScript }} />
-      </head>
       <body className="flex min-h-full flex-col">
         <LanguageProvider initialLocale={locale}>
           <Atmosphere />

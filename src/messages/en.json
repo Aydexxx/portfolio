@@ -11,18 +11,26 @@
     "close": "Close"
   },
   "hero": {
-    "greeting": "Hi, I'm",
-    "role": "Full-stack developer · Computer Programmer",
-    "subtitle": "A Computer Programming graduate building full-stack apps focused on Laravel, TypeScript, and AI/RAG. Looking for junior roles.",
-    "cta": {
-      "projects": "Projects",
-      "contact": "Contact"
-    },
+    "eyebrow": "Live now · Three products",
+    "thesis": "Live, AI-powered products.",
+    "lead": "Not ideas or mockups — three products running live right now, with real users.",
+    "cta": "Jump to the work",
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "email": "Email"
     }
+  },
+  "scene": {
+    "label": "Scene",
+    "liveChannel": "Live channel",
+    "channel": "Channel",
+    "live": "Live",
+    "whatItDoes": "What it does",
+    "whereItSits": "Where it sits",
+    "visitLive": "Visit live",
+    "viewSource": "View source",
+    "play": "Play demo"
   },
   "about": {
     "eyebrow": "About",

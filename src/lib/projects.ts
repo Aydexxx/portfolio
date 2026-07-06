@@ -1,85 +1,103 @@
-import type { DictKey } from "@/components/providers/language-provider";
+export type ProjectSlug = "fluxion" | "taskflow" | "larajob";
 
 export type Project = {
-  /** Stable id; also used as the i18n key segment under `projects.items.*`. */
-  id: string;
+  slug: ProjectSlug;
+  /** Channel number in the showcase sequence, e.g. "01". */
+  index: string;
   /** Brand name — not translated. */
   name: string;
-  /** i18n key for the one-line description. */
-  descriptionKey: DictKey;
-  /** Each project's own stack, in display order. */
-  stack: string[];
-  /** Required link. */
-  github: string;
-  /**
-   * Optional live URL. When present, a "Live Demo" button renders; otherwise a
-   * subtle "coming soon" state is shown. Add the URL here to flip it on.
-   */
-  liveUrl?: string;
-  /** Public path the screenshot will live at once it exists. */
-  image: string;
-  /**
-   * Flip to `true` once the file at `image` actually exists in `public/`.
-   * Stays `false` until then so the card never issues a request for a file
-   * that isn't there yet — it just shows the gradient placeholder.
-   */
-  hasImage?: boolean;
-  /** Featured projects get more visual weight (wider, horizontal layout). */
-  featured?: boolean;
-  /** On-brand placeholder gradient, shown until a real screenshot exists. */
-  gradient: string;
+  /** One-line tagline. */
+  tagline: string;
+  /** Genuinely live — leaned into with a "● LIVE" HUD and the real domain. */
+  liveUrl: string;
+  repoUrl: string;
+  /** Compressed, muted demo clip in public/projects. */
+  video: string;
+  /** Poster shown before the clip plays (and the only frame under reduced motion). */
+  poster: string;
+  /** Readout chips — the app's own stack, in display order. */
+  frontend: string[];
+  backend: string[];
+  /** Plain, user-facing: what it does. 2–3 sentences. */
+  whatItDoes: string;
+  /** Its place in today's tech landscape. Grounded, short. */
+  whereItSits: string;
 };
 
-// Fluxion leads — it's the flagship project, so it's featured first and
-// rendered with extra weight in the grid.
+// The three flagships, in broadcast order. Fluxion leads.
 export const PROJECTS: Project[] = [
   {
-    id: "fluxion",
+    slug: "fluxion",
+    index: "01",
     name: "Fluxion",
-    descriptionKey: "projects.items.fluxion.description",
-    stack: [
+    tagline: "Görsel yapay zekâ iş akışı otomasyonu — kur, bağla, çalıştır.",
+    liveUrl: "https://web-production-2d7a3.up.railway.app/",
+    repoUrl: "https://github.com/Aydexxx/fluxion",
+    video: "/projects/fluxion.mp4",
+    poster: "/projects/fluxion-poster.jpg",
+    frontend: ["React", "TypeScript", "React Flow", "Socket.IO", "Tailwind CSS"],
+    backend: [
       "Node.js",
+      "Express",
       "TypeScript",
-      "React",
-      "React Flow",
+      "Prisma",
       "PostgreSQL",
       "Redis",
       "BullMQ",
       "Socket.IO",
-      "Prisma",
-      "Docker",
     ],
-    github: "https://github.com/Aydexxx/fluxion",
-    liveUrl: "https://web-production-2d7a3.up.railway.app",
-    image: "/projects/fluxion.png",
-    featured: true,
-    gradient: "linear-gradient(135deg, #6ee7c8 0%, #2f7fd6 48%, #18244f 100%)",
+    whatItDoes:
+      "Otomatik iş akışları için sürükle-bırak bir kurucu — n8n ya da Zapier gibi. Node’ları bir akışa bağlarsın, yapay zekâ adımları ve tetikleyiciler eklersin; Fluxion tüm grafiği bir arka plan yürütme motorunda çalıştırır. Canlı imleçlerle gerçek zamanlı çok kullanıcılı düzenleme, şifreli kimlik kasası, sürümleme, rol tabanlı erişim ve herkese açık bir REST API sunar.",
+    whereItSits:
+      "İş akışı otomasyonu (iPaaS) en hızlı büyüyen yazılım kategorilerinden biri; yapay zekâ ajan orkestrasyonu ise bugünkü sınırı. Fluxion tam burada duruyor — mantığı ve yapay zekâyı çalışan otomasyonlara dönüştüren görsel bir motor.",
   },
   {
-    id: "taskflow",
+    slug: "taskflow",
+    index: "02",
     name: "TaskFlow",
-    descriptionKey: "projects.items.taskflow.description",
-    stack: ["React", "TypeScript", "Node.js", "Express", "Prisma", "Socket.IO"],
-    github: "https://github.com/Aydexxx/taskflow",
-    image: "/projects/taskflow.png",
-    gradient: "linear-gradient(135deg, #8b89ff 0%, #5b59e0 42%, #211f52 100%)",
+    tagline: "Gerçek zamanlı ekip çalışması, içine gömülü bir yapay zekâ yardımcısıyla.",
+    liveUrl: "https://taskflow-production-3f87.up.railway.app/",
+    repoUrl: "https://github.com/Aydexxx/taskflow",
+    video: "/projects/taskflow.mp4",
+    poster: "/projects/taskflow-poster.jpg",
+    frontend: ["React", "TypeScript", "Socket.IO", "Tailwind CSS"],
+    backend: [
+      "Node.js",
+      "Express",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Socket.IO",
+      "JWT",
+    ],
+    whatItDoes:
+      "Gerçek zamanlı bir Kanban ve proje yönetim aracı. Kartlar taşındıkça panolar tüm kullanıcılarda anlık güncellenir; çalışma alanları, bahsetmeler, bildirimler ve arama içerir. Üstünde global bir yapay zekâ asistanı var — çalışma alanlarını ve yetkilerini anlar, sorularını yanıtlar ve iş yapmana yardım eder.",
+    whereItSits:
+      "Gerçek zamanlı işbirlikçi SaaS (Linear, Notion, Trello) modern ekip araçlarının standart biçimi; gömülü bir yapay zekâ yardımcısı ise hızla olmazsa olmaz hâline geliyor. TaskFlow ikisini birleştiriyor.",
   },
   {
-    id: "larajob",
+    slug: "larajob",
+    index: "03",
     name: "LaraJob",
-    descriptionKey: "projects.items.larajob.description",
-    stack: ["Laravel", "PHP", "MySQL", "Blade", "Prism (AI)"],
-    github: "https://github.com/Aydexxx/larajob",
-    image: "/projects/larajob.png",
-    gradient: "linear-gradient(135deg, #f08aa6 0%, #b1499b 48%, #36214f 100%)",
-  },
-  {
-    id: "ragbot",
-    name: "RAGBot",
-    descriptionKey: "projects.items.ragbot.description",
-    stack: ["Python", "FastAPI", "React", "TypeScript", "ChromaDB"],
-    github: "https://github.com/Aydexxx/ragbot",
-    image: "/projects/ragbot.png",
-    gradient: "linear-gradient(135deg, #46c7c7 0%, #2f7fd6 50%, #182a52 100%)",
+    tagline: "Uyumu gerçekten anlayan, yapay zekâ destekli bir iş ilanı platformu.",
+    liveUrl: "https://larajob-production.up.railway.app/",
+    repoUrl: "https://github.com/Aydexxx/larajob",
+    video: "/projects/larajob.mp4",
+    poster: "/projects/larajob-poster.jpg",
+    frontend: ["Laravel Blade", "Vite", "Tailwind CSS"],
+    backend: [
+      "Laravel (PHP 8.4)",
+      "PostgreSQL + pgvector",
+      "Queue workers",
+      "OpenAI (gpt-4o-mini · text-embedding-3-small)",
+    ],
+    whatItDoes:
+      "Anlamsal arama ve açıklamalı yapay zekâ eşleştirmesi olan bir iş ilanı sitesi. İlanları ve profilleri vektör olarak gömer (pgvector) ve rolleri anahtar kelimeyle değil anlamla sıralar; dürüst bir uyum skoru ile ‘neden uyuyorsun’ ve ‘açığı kapat’ gerekçelerini gösterir. Ayrıca yüklenen CV’den profili otomatik doldurur ve işverenler için adayları sıralar.",
+    whereItSits:
+      "İşe alım teknolojisi embedding’ler ve büyük dil modelleri üzerine yeniden kuruluyor. pgvector tabanlı anlamsal arama, modern yapay zekâ aramasını ve RAG’i güçlendiren desenin aynısı — LaraJob bunu işe alımın ucundan ucuna uyguluyor.",
   },
 ];
+
+export const PROJECTS_BY_SLUG: Record<ProjectSlug, Project> = Object.fromEntries(
+  PROJECTS.map((p) => [p.slug, p]),
+) as Record<ProjectSlug, Project>;

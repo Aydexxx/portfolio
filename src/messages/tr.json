@@ -11,18 +11,26 @@
     "close": "Kapat"
   },
   "hero": {
-    "greeting": "Merhaba, ben",
-    "role": "Full-stack geliştirici · Bilgisayar Programcısı",
-    "subtitle": "Laravel, TypeScript ve AI/RAG odağında full-stack uygulamalar geliştiren bir Bilgisayar Programcılığı mezunuyum. Junior pozisyonlar arıyorum.",
-    "cta": {
-      "projects": "Projeler",
-      "contact": "İletişim"
-    },
+    "eyebrow": "Canlı yayında · Üç ürün",
+    "thesis": "Canlı, yapay zekâ destekli ürünler.",
+    "lead": "Fikirler ya da mockup’lar değil — şu anda canlıda, gerçek kullanıcılarla çalışan üç ürün.",
+    "cta": "Projelere in",
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "email": "E-posta"
     }
+  },
+  "scene": {
+    "label": "Sahne",
+    "liveChannel": "Canlı kanal",
+    "channel": "Kanal",
+    "live": "Canlı",
+    "whatItDoes": "Ne yapar",
+    "whereItSits": "Nerede duruyor",
+    "visitLive": "Canlıya git",
+    "viewSource": "Kaynak",
+    "play": "Demoyu oynat"
   },
   "about": {
     "eyebrow": "Hakkımda",

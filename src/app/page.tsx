@@ -1,17 +1,14 @@
 import { Hero } from "@/components/sections/hero";
-import { Projects } from "@/components/sections/projects";
-import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
-import { Contact } from "@/components/sections/contact";
+import { ProjectScene } from "@/components/projects/project-scene";
+import { PROJECTS_BY_SLUG } from "@/lib/projects";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Projects />
-      <About />
-      <Skills />
-      <Contact />
+      {/* Scene 01 — the signature "live channel". The remaining two scenes and
+          the "more work" strip follow once this pattern is approved. */}
+      <ProjectScene project={PROJECTS_BY_SLUG.fluxion} side="left" id="work" />
     </>
   );
 }

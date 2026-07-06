@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLanguage, type DictKey } from "@/components/providers/language-provider";
-import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
 
 const LINKS: { href: string; key: DictKey }[] = [
@@ -83,7 +82,6 @@ export function SiteNav() {
           <div className="hidden sm:block">
             <LanguageSwitcher />
           </div>
-          <ThemeToggle />
           <button
             ref={menuButtonRef}
             type="button"
