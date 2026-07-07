@@ -3,8 +3,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-// The cobalt accent dot on gallery paper — the site's brand mark, legible at
-// favicon sizes where a wordmark would not be.
+// Brand mark — the apricot dot on warm charcoal, the same dot that sits in
+// the `gitsite` wordmark. Legible at favicon size where a wordmark would not.
 export default function Icon() {
   return new ImageResponse(
     (
@@ -15,9 +15,9 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#F5F3EE",
+          background: "#16131a",
           borderRadius: 7,
-          border: "1px solid #E4E0D6",
+          border: "1px solid #322b3a",
         }}
       >
         <div
@@ -25,7 +25,7 @@ export default function Icon() {
             width: 13,
             height: 13,
             borderRadius: "50%",
-            background: "#1F3BE0",
+            background: "#E8955A",
           }}
         />
       </div>

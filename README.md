@@ -1,24 +1,24 @@
-# Bünyamin Aydeniz — Portfolio
+# gitsite
 
-Portfolio site for **Bünyamin Aydeniz**, a full-stack developer and Computer
-Programming graduate (İstanbul Arel Üniversitesi) shipping live, AI-powered
-products. The site is built like a bright gallery of live products: three
-flagship apps — Fluxion, TaskFlow, and LaraJob — each presented as a "live
-channel" with its demo video, real domain, and a technical readout of its
-stack. Turkish-first (TR/EN toggle), light theme, Framer Motion
-micro-interactions throughout.
+A dark, editorial product-showcase portfolio. The whole point is three live,
+AI-powered products — **Fluxion**, **TaskFlow**, and **LaraJob** — each shown
+as a "live channel" with a demo video, a real domain, and a tight technical
+readout. Turkish-only, dark-only, no language or theme toggle, no "Hakkımda".
+
+The visual identity is the "editorial darkroom": plum-charcoal + warm ivory +
+apricot + filmic grain + a giant ghosted numeral behind each project.
 
 ## Tech Stack
 
-- [Next.js 16](https://nextjs.org/) (App Router)
+- [Next.js 16](https://nextjs.org/) (App Router · Turbopack)
 - React 19 + TypeScript
 - Tailwind CSS 4
-- Framer Motion
-- `next/font` (Instrument Serif, Geist, Geist Mono)
+- Framer Motion (in-view reveals, accordion height, prefers-reduced-motion)
+- `next/font` — **Fraunces** (display) · **Geist** (body) · **Geist Mono** (labels)
 
 ## Live Site
 
-_Coming soon — added here after deployment._
+_Coming soon — added here after deployment to Vercel._
 
 ## Getting Started
 

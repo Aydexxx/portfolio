@@ -3,4 +3,6 @@
 // constant, so swapping in the production domain later is a single-line change.
 export const SITE_URL = "https://aydexx.dev";
 
-export const SITE_NAME = "Bünyamin Aydeniz";
+// OG/Twitter siteName. The brand wordmark is `gitsite`; the person's name only
+// appears in the footer (§H), not in metadata.
+export const SITE_NAME = "gitsite";
