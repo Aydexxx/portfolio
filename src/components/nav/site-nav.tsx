@@ -2,17 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useLanguage, type DictKey } from "@/components/providers/language-provider";
-import { LanguageSwitcher } from "./language-switcher";
 
-const LINKS: { href: string; key: DictKey }[] = [
-  { href: "#work", key: "nav.work" },
-  { href: "#about", key: "nav.about" },
-  { href: "#contact", key: "nav.contact" },
+/**
+ * SiteNav — sticky, thin, dark. Brand wordmark `gitsite` (lowercase, with an
+ * apricot dot mark), links `Projeler` (#work) and `İletişim` (#contact).
+ * Turkish-only, no theme toggle, no language switch, no "Hakkımda".
+ */
+const LINKS = [
+  { href: "#work", label: "Projeler" },
+  { href: "#contact", label: "İletişim" },
 ];
 
 export function SiteNav() {
-  const { t } = useLanguage();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,14 +54,17 @@ export function SiteNav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        {/* Wordmark */}
+        {/* Wordmark — gitsite */}
         <a
           href="#top"
-          className="group flex items-center gap-2 font-display text-lg font-semibold tracking-tight"
+          className="group flex items-center gap-2 font-mono text-base tracking-tight lowercase"
         >
-          <span className="inline-block size-2 rounded-full bg-accent shadow-[0_0_12px_var(--glow)]" />
-          <span>
-            Bünyamin <span className="text-accent">Aydeniz</span>
+          <span
+            aria-hidden="true"
+            className="inline-block size-2 rounded-full bg-accent shadow-[0_0_12px_var(--glow)]"
+          />
+          <span className="text-foreground">
+            git<span className="text-accent">site</span>
           </span>
         </a>
 
@@ -72,27 +76,22 @@ export function SiteNav() {
               href={link.href}
               className="rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
             >
-              {t(link.key)}
+              {link.label}
             </a>
           ))}
         </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <LanguageSwitcher />
-          </div>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? t("nav.close") : t("nav.menu")}
-            aria-expanded={open}
-            className="grid size-9 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground md:hidden"
-          >
-            <MenuGlyph open={open} />
-          </button>
-        </div>
+        {/* Mobile trigger */}
+        <button
+          ref={menuButtonRef}
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Kapat" : "Menü"}
+          aria-expanded={open}
+          className="grid size-9 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground md:hidden"
+        >
+          <MenuGlyph open={open} />
+        </button>
       </nav>
 
       {/* Mobile overlay menu */}
@@ -113,12 +112,9 @@ export function SiteNav() {
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3 text-base text-foreground/90 transition-colors hover:bg-surface-2"
                 >
-                  {t(link.key)}
+                  {link.label}
                 </a>
               ))}
-              <div className="mt-3 border-t border-border pt-4 sm:hidden">
-                <LanguageSwitcher />
-              </div>
             </div>
           </motion.div>
         )}

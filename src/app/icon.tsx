@@ -3,8 +3,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-// Same accent dot used before the wordmark in the nav — kept as the brand
-// mark since a full "Aydexx" wordmark is illegible at favicon sizes.
+// The cobalt accent dot on gallery paper — the site's brand mark, legible at
+// favicon sizes where a wordmark would not be.
 export default function Icon() {
   return new ImageResponse(
     (
@@ -15,8 +15,9 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#08080a",
+          background: "#F5F3EE",
           borderRadius: 7,
+          border: "1px solid #E4E0D6",
         }}
       >
         <div
@@ -24,7 +25,7 @@ export default function Icon() {
             width: 13,
             height: 13,
             borderRadius: "50%",
-            background: "#6e6cf7",
+            background: "#1F3BE0",
           }}
         />
       </div>

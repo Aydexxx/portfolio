@@ -1,8 +1,12 @@
-# Aydexx — Portfolio
+# Bünyamin Aydeniz — Portfolio
 
-Personal portfolio site for Aydexx, a full-stack developer and Computer
-Programming student building with Laravel, TypeScript, and AI/RAG. Bilingual
-(TR/EN), light/dark themes, and Framer Motion micro-interactions throughout.
+Portfolio site for **Bünyamin Aydeniz**, a full-stack developer and Computer
+Programming graduate (İstanbul Arel Üniversitesi) shipping live, AI-powered
+products. The site is built like a bright gallery of live products: three
+flagship apps — Fluxion, TaskFlow, and LaraJob — each presented as a "live
+channel" with its demo video, real domain, and a technical readout of its
+stack. Turkish-first (TR/EN toggle), light theme, Framer Motion
+micro-interactions throughout.
 
 ## Tech Stack
 
@@ -10,7 +14,7 @@ Programming student building with Laravel, TypeScript, and AI/RAG. Bilingual
 - React 19 + TypeScript
 - Tailwind CSS 4
 - Framer Motion
-- `next/font` (Geist, Geist Mono, Space Grotesk)
+- `next/font` (Instrument Serif, Geist, Geist Mono)
 
 ## Live Site
 
@@ -27,4 +31,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Copyright © Aydexxx.

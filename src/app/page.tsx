@@ -1,14 +1,16 @@
-import { Hero } from "@/components/sections/hero";
-import { ProjectScene } from "@/components/projects/project-scene";
-import { PROJECTS_BY_SLUG } from "@/lib/projects";
+import { ProjectBlock } from "@/components/projects/project-block";
+import { PROJECTS } from "@/lib/projects";
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      {/* Scene 01 — the signature "live channel". The remaining two scenes and
-          the "more work" strip follow once this pattern is approved. */}
-      <ProjectScene project={PROJECTS_BY_SLUG.fluxion} side="left" id="work" />
+      {/* Slim mono line under the header — not a hero, just a cue. */}
+      <div className="mx-auto w-full max-w-6xl px-6 pt-8 md:pt-10">
+        <p className="eyebrow text-muted">Canlı ürünler — üç proje</p>
+      </div>
+
+      {/* Gate point: build Fluxion end-to-end first, verify, then replicate. */}
+      <ProjectBlock project={PROJECTS[0]} side="left" id="work" />
     </>
   );
 }

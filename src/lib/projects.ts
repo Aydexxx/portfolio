@@ -1,14 +1,14 @@
 export type ProjectSlug = "fluxion" | "taskflow" | "larajob";
 
 export type Project = {
+  /** Channel number in the showcase sequence — "01" | "02" | "03". */
+  index: "01" | "02" | "03";
   slug: ProjectSlug;
-  /** Channel number in the showcase sequence, e.g. "01". */
-  index: string;
   /** Brand name — not translated. */
   name: string;
   /** One-line tagline. */
   tagline: string;
-  /** Genuinely live — leaned into with a "● LIVE" HUD and the real domain. */
+  /** Genuinely live — leaned into with a "● CANLI" HUD and the real domain. */
   liveUrl: string;
   repoUrl: string;
   /** Compressed, muted demo clip in public/projects. */
@@ -18,17 +18,18 @@ export type Project = {
   /** Readout chips — the app's own stack, in display order. */
   frontend: string[];
   backend: string[];
-  /** Plain, user-facing: what it does. 2–3 sentences. */
+  /** Plain, user-facing: what it does. */
   whatItDoes: string;
   /** Its place in today's tech landscape. Grounded, short. */
   whereItSits: string;
 };
 
-// The three flagships, in broadcast order. Fluxion leads.
+// The three flagships, in broadcast order. Fluxion leads. Turkish copy is
+// verbatim from the build spec.
 export const PROJECTS: Project[] = [
   {
-    slug: "fluxion",
     index: "01",
+    slug: "fluxion",
     name: "Fluxion",
     tagline: "Görsel yapay zekâ iş akışı otomasyonu — kur, bağla, çalıştır.",
     liveUrl: "https://web-production-2d7a3.up.railway.app/",
@@ -52,8 +53,8 @@ export const PROJECTS: Project[] = [
       "İş akışı otomasyonu (iPaaS) en hızlı büyüyen yazılım kategorilerinden biri; yapay zekâ ajan orkestrasyonu ise bugünkü sınırı. Fluxion tam burada duruyor — mantığı ve yapay zekâyı çalışan otomasyonlara dönüştüren görsel bir motor.",
   },
   {
-    slug: "taskflow",
     index: "02",
+    slug: "taskflow",
     name: "TaskFlow",
     tagline: "Gerçek zamanlı ekip çalışması, içine gömülü bir yapay zekâ yardımcısıyla.",
     liveUrl: "https://taskflow-production-3f87.up.railway.app/",
@@ -76,8 +77,8 @@ export const PROJECTS: Project[] = [
       "Gerçek zamanlı işbirlikçi SaaS (Linear, Notion, Trello) modern ekip araçlarının standart biçimi; gömülü bir yapay zekâ yardımcısı ise hızla olmazsa olmaz hâline geliyor. TaskFlow ikisini birleştiriyor.",
   },
   {
-    slug: "larajob",
     index: "03",
+    slug: "larajob",
     name: "LaraJob",
     tagline: "Uyumu gerçekten anlayan, yapay zekâ destekli bir iş ilanı platformu.",
     liveUrl: "https://larajob-production.up.railway.app/",
@@ -89,7 +90,7 @@ export const PROJECTS: Project[] = [
       "Laravel (PHP 8.4)",
       "PostgreSQL + pgvector",
       "Queue workers",
-      "OpenAI (gpt-4o-mini · text-embedding-3-small)",
+      "OpenAI",
     ],
     whatItDoes:
       "Anlamsal arama ve açıklamalı yapay zekâ eşleştirmesi olan bir iş ilanı sitesi. İlanları ve profilleri vektör olarak gömer (pgvector) ve rolleri anahtar kelimeyle değil anlamla sıralar; dürüst bir uyum skoru ile ‘neden uyuyorsun’ ve ‘açığı kapat’ gerekçelerini gösterir. Ayrıca yüklenen CV’den profili otomatik doldurur ve işverenler için adayları sıralar.",
@@ -97,7 +98,3 @@ export const PROJECTS: Project[] = [
       "İşe alım teknolojisi embedding’ler ve büyük dil modelleri üzerine yeniden kuruluyor. pgvector tabanlı anlamsal arama, modern yapay zekâ aramasını ve RAG’i güçlendiren desenin aynısı — LaraJob bunu işe alımın ucundan ucuna uyguluyor.",
   },
 ];
-
-export const PROJECTS_BY_SLUG: Record<ProjectSlug, Project> = Object.fromEntries(
-  PROJECTS.map((p) => [p.slug, p]),
-) as Record<ProjectSlug, Project>;

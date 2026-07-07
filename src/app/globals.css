@@ -1,47 +1,45 @@
 @import "tailwindcss";
 
 /* ----------------------------------------------------------------------------
-   Design tokens — "Bright gallery of live products" (Revision 1)
-   Light-first, single theme. Warm gallery paper with a confident cobalt accent;
-   the signature device is cobalt print registration / crop marks (see
-   components/projects/crop-marks.tsx).
+   Design tokens — "editorial darkroom" (gitsite)
+   Warm, filmic dark. Not black + acid-neon; not cream + serif + terracotta.
+   The identity is plum-charcoal + ivory + apricot + grain + giant ghost numerals.
 
    Two layers:
-     · Raw palette   — --paper, --ink, --cobalt … (the concept)
+     · Raw palette   — --bg, --bg-2, --fg, --muted, --line, --accent, --live
      · Semantic map  — --background, --foreground, --accent … (what components
                        consume, kept stable so the app themes from one place)
 ---------------------------------------------------------------------------- */
 :root {
   /* Raw palette */
-  --paper: #f5f3ee; /* warm off-white base — gallery paper */
-  --paper-2: #ffffff; /* cards, video frame */
-  --ink: #14161b; /* near-black primary text */
-  --muted: #6b6f79; /* secondary text, captions */
-  --line: #e4e0d6; /* hairlines, borders */
-  --cobalt: #1f3be0; /* primary accent: links, CTA, crop marks, live signal */
-  --live: #12a150; /* the live dot only */
+  --bg: #16131a; /* base: deep warm charcoal, plum undertone (not pure black) */
+  --bg-2: #201b27; /* elevated cards, video frame */
+  --fg: #ede6db; /* primary text: warm ivory */
+  --muted: #988e99; /* secondary text, captions */
+  --line: #322b3a; /* hairlines, borders, ghost numerals */
+  --accent: #e8955a; /* apricot — CTAs, links, live label, marks. Warm, non-neon */
+  --live: #5bd08a; /* the live status dot only */
 
   /* Semantic map */
-  --background: var(--paper);
-  --surface: var(--paper-2);
-  --surface-2: #efebe2; /* slightly deeper paper */
+  --background: var(--bg);
+  --surface: var(--bg-2);
+  --surface-2: #282231; /* slightly deeper elevated surface */
   --border: var(--line);
-  --border-strong: #d6d1c4;
-  --foreground: var(--ink);
+  --border-strong: #433a4d;
+  --foreground: var(--fg);
 
-  --accent: var(--cobalt);
-  --accent-bright: #1730b8; /* darker cobalt — hover */
-  --accent-contrast: #ffffff;
-  --accent-solid: var(--cobalt);
-  --accent-solid-hover: #1730b8;
-  --glow: rgba(31, 59, 224, 0.16);
+  --accent-bright: #f4a469; /* lighter apricot — hover */
+  --accent-contrast: #16131a; /* text on a filled apricot button */
+  --accent-solid: var(--accent);
+  --accent-solid-hover: #f4a469;
+  --glow: rgba(232, 149, 90, 0.18);
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 /* ----------------------------------------------------------------------------
    Tailwind theme mapping — exposes tokens as utilities
-   (bg-background, text-foreground, border-border, text-accent, border-cobalt …)
+   (bg-background, text-foreground, border-border, text-accent, bg-bg-2 …)
 ---------------------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
@@ -57,16 +55,16 @@
   --color-accent-solid: var(--accent-solid);
   --color-accent-solid-hover: var(--accent-solid-hover);
 
-  /* Raw palette exposed for the gallery HUD + crop marks */
-  --color-paper: var(--paper);
-  --color-paper-2: var(--paper-2);
-  --color-ink: var(--ink);
-  --color-cobalt: var(--cobalt);
+  /* Raw palette exposed for direct use */
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-fg: var(--fg);
+  --color-line: var(--line);
   --color-live: var(--live);
 
-  /* Type roles: filmic serif display · quiet sans body · mono instrument readout */
+  /* Type roles: warm soft-serif display · quiet sans body · mono readout */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-instrument-serif), ui-serif, Georgia, "Times New Roman",
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
     serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -100,20 +98,25 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Display headings: Fraunces, optically sized, weighted substantial (never thin) */
+.font-display {
+  font-optical-sizing: auto;
+}
+
 /* Accessible, visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--cobalt);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
 ::selection {
-  background: color-mix(in srgb, var(--cobalt) 18%, transparent);
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
   color: var(--foreground);
 }
 
 /* ----------------------------------------------------------------------------
-   Atmosphere — a very faint paper grain (see components/atmosphere.tsx)
-   Kept subtle: texture on the paper, never decoration. pointer-events:none.
+   Atmosphere — grain + vignette (see components/atmosphere.tsx)
+   Fixed, full-screen, pointer-events:none, pinned behind all content.
 ---------------------------------------------------------------------------- */
 .atmosphere {
   position: fixed;
@@ -123,12 +126,24 @@ body {
   pointer-events: none;
 }
 
-.paper-grain {
+/* Fine grain over the charcoal — filmic texture, kept very subtle. */
+.atmosphere-grain {
   position: absolute;
   inset: -50%;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtle edge-darkening vignette */
+.atmosphere-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 50% 35%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
 }
 
 /* ----------------------------------------------------------------------------
@@ -138,7 +153,7 @@ body {
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -179,4 +194,20 @@ body {
   .live-dot::after {
     animation: none;
   }
+}
+
+/* ----------------------------------------------------------------------------
+   Signature — giant ghosted numerals (the one bold, memorable device)
+   Rendered behind/beside each project as a decorative layer.
+---------------------------------------------------------------------------- */
+.ghost-numeral {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(8rem, 22vw, 20rem);
+  line-height: 0.8;
+  color: var(--line);
+  opacity: 0.55;
+  letter-spacing: -0.04em;
+  user-select: none;
 }
