@@ -32,6 +32,7 @@ export function ProjectBlock({
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const videoRight = side === "right";
+  const isLive = Boolean(project.liveUrl);
   const host = hostOf(project.liveUrl);
 
   return (
@@ -57,16 +58,24 @@ export function ProjectBlock({
           transition={{ duration: reduce ? 0.2 : 0.7, ease: EASE }}
           className="relative z-10"
         >
-          {/* Eyebrow — channel + live + domain */}
+          {/* Eyebrow — channel + live + domain (live) or self-hosted (non-live) */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
-            <span>
-              Kanal {project.index} · Canlı Kanal
-            </span>
-            <span className="flex items-center gap-2 text-accent">
-              <span className="live-dot" aria-hidden="true" />
-              Canlı
-            </span>
-            <span className="hidden sm:inline text-muted/70">{host}</span>
+            {isLive ? (
+              <>
+                <span>
+                  Kanal {project.index} · Canlı Kanal
+                </span>
+                <span className="flex items-center gap-2 text-accent">
+                  <span className="live-dot" aria-hidden="true" />
+                  Canlı
+                </span>
+                <span className="hidden sm:inline text-muted/70">{host}</span>
+              </>
+            ) : (
+              <span>
+                Kanal {project.index} · Kendi Sunucusunda
+              </span>
+            )}
           </div>
 
           {/* Name + tagline */}
@@ -92,15 +101,27 @@ export function ProjectBlock({
               <StackRow label="Backend" items={project.backend} />
 
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex h-10 items-center gap-2 rounded-lg bg-accent-solid px-4 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-solid-hover"
-                >
-                  Canlıya git
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-                </a>
+                {isLive ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex h-10 items-center gap-2 rounded-lg bg-accent-solid px-4 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-solid-hover"
+                  >
+                    Canlıya git
+                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </a>
+                ) : (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex h-10 items-center gap-2 rounded-lg bg-accent-solid px-4 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-solid-hover"
+                  >
+                    GitHub&apos;da incele
+                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </a>
+                )}
                 <button
                   type="button"
                   onClick={() => setOpen((o) => !o)}
@@ -181,7 +202,8 @@ function StackRow({ label, items }: { label: string; items: string[] }) {
 }
 
 /** Bare hostname for the HUD readout — leans into the genuinely-live domain. */
-function hostOf(url: string): string {
+function hostOf(url: string | undefined): string {
+  if (!url) return "";
   try {
     return new URL(url).host;
   } catch {

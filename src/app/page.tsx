@@ -20,6 +20,7 @@ export default function Home() {
       <ProjectBlock project={PROJECTS[0]} side="left" id="work" />
       <ProjectBlock project={PROJECTS[1]} side="right" />
       <ProjectBlock project={PROJECTS[2]} side="left" />
+      <ProjectBlock project={PROJECTS[3]} side="right" />
 
       {/* GitHub "more" card — points to everything else. */}
       <div className="mx-auto w-full max-w-6xl px-6 pb-16 md:pb-24">

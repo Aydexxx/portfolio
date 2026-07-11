@@ -6,10 +6,9 @@ import { motion, useReducedMotion } from "framer-motion";
  * İletişim — minimal section, no "Hadi konuşalım" or any of that. Heading is
  * just "İletişim". One line, then three quiet rows: e-posta, GitHub, LinkedIn.
  *
- * Each row is a real link (mailto:, profile URL, or the LinkedIn placeholder
- * — `#` until the URL is provided). They render as bordered rows on the
- * elevated surface, not as accent-filled buttons: this section is the close,
- * not a sales pitch.
+ * Each row is a real link — mailto:, GitHub, and LinkedIn profile URLs. They
+ * render as bordered rows on the elevated surface, not as accent-filled
+ * buttons: this section is the close, not a sales pitch.
  */
 const LINKS = [
   {
@@ -24,14 +23,11 @@ const LINKS = [
     value: "github.com/Aydexxx",
     external: true,
   },
-  // Placeholder until the LinkedIn URL is provided — keep as a row, just
-  // disabled, so the layout is stable.
   {
-    href: "#",
+    href: "https://www.linkedin.com/in/b%C3%BCnyamin-aydeniz-0a1182377/",
     label: "LinkedIn",
-    value: "Yakında",
-    external: false,
-    disabled: true,
+    value: "linkedin.com/in/bünyamin-aydeniz",
+    external: true,
   },
 ] as const;
 
@@ -79,7 +75,7 @@ export function Contact() {
                   label={link.label}
                   value={link.value}
                   external={"external" in link ? link.external : false}
-                  disabled={"disabled" in link ? link.disabled : false}
+                  disabled={"disabled" in link ? Boolean(link.disabled) : false}
                 />
               </li>
             ))}
